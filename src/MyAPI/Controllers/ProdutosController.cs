@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace MyAPI.Controllers
 {
-    [ApiController]
     [Route("produtos")]
-    public class ProdutosController : ControllerBase
+    public class ProdutosController : MainController
     {
         private readonly IProdutoService _service;
         private readonly IMapper _mapper;
@@ -21,18 +20,18 @@ namespace MyAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Adicionar(ProdutoViewModel produtoViewModel)
+        public async Task<IActionResult> Adicionar([FromBody] ProdutoViewModel produtoViewModel)
         {
             if (!ModelState.IsValid)
             {
-                return UnprocessableEntity(ModelState);
+                return CustomResponse(ModelState);
             }
 
             var produto = _mapper.Map<Produto>(produtoViewModel);
 
             await _service.Adicionar(produto);
 
-            return Created("", null);
+            return CustomResponse(produtoViewModel);
         }
     }
 }

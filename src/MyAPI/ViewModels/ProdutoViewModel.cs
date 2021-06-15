@@ -28,8 +28,5 @@ namespace MyAPI.ViewModels
 
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         public Guid FornecedorId { get; set; }
-
-        [ScaffoldColumn(false)]
-        public string NomeFornecedor { get; set; }
     }
 }
