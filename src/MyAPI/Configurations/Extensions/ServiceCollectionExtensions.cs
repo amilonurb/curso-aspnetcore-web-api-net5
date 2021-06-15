@@ -1,7 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MyAPI.Business.Interfaces.Repositories;
+using MyAPI.Business.Interfaces.Services;
+using MyAPI.Business.Services;
 using MyAPI.Data.Contexts;
+using MyAPI.Data.Repositories;
 
 namespace MyAPI.Configurations.Extensions
 {
@@ -20,6 +24,10 @@ namespace MyAPI.Configurations.Extensions
         public static IServiceCollection AddMyDependencies(this IServiceCollection services)
         {
             services.AddScoped<MyDbContext>();
+
+            services.AddScoped<IProdutoRepository, ProdutoRepository>();
+
+            services.AddScoped<IProdutoService, ProdutoService>();
 
             return services;
         }
