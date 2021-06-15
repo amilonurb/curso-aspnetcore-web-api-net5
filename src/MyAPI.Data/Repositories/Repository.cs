@@ -15,6 +15,12 @@ namespace MyAPI.Data.Repositories
         protected readonly MyDbContext _context;
         protected readonly DbSet<TEntity> _dbSet;
 
+        protected Repository(MyDbContext context)
+        {
+            _context = context;
+            _dbSet = context.Set<TEntity>();
+        }
+
         public async Task<IEnumerable<TEntity>> Buscar(Expression<Func<TEntity, bool>> predicate) =>
             await _dbSet.AsNoTracking().Where(predicate).ToListAsync();
 
