@@ -20,6 +20,8 @@ namespace MyAPI
         {
             services.AddMyDbContext(Configuration);
 
+            services.AddAutoMapper(typeof(Startup));
+
             services.AddControllers();
 
             services.AddMyDependencies();
