@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MyAPI.Business.Models;
 using System;
 using System.Linq;
 using System.Reflection;
@@ -9,6 +10,8 @@ namespace MyAPI.Data.Contexts
 {
     public class MyDbContext : DbContext
     {
+        public DbSet<Produto> Produtos { get; set; }
+
         public MyDbContext(DbContextOptions<MyDbContext> options) : base(options)
         {
             if (Database.GetPendingMigrations().Any())
