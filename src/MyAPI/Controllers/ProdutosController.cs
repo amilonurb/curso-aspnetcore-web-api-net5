@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using MyAPI.Business.Interfaces;
 using MyAPI.Business.Interfaces.Repositories;
 using MyAPI.Business.Interfaces.Services;
 using MyAPI.Business.Models;
@@ -17,9 +18,10 @@ namespace MyAPI.Controllers
         private readonly IProdutoRepository _repository;
         private readonly IMapper _mapper;
 
-        public ProdutosController(IProdutoService service,
+        public ProdutosController(INotificador notificador,
+                                  IProdutoService service,
                                   IProdutoRepository repository,
-                                  IMapper mapper)
+                                  IMapper mapper) : base(notificador)
         {
             _service = service;
             _repository = repository;

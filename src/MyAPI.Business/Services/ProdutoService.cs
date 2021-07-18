@@ -1,4 +1,5 @@
-﻿using MyAPI.Business.Interfaces.Repositories;
+﻿using MyAPI.Business.Interfaces;
+using MyAPI.Business.Interfaces.Repositories;
 using MyAPI.Business.Interfaces.Services;
 using MyAPI.Business.Models;
 using MyAPI.Business.Models.Validations;
@@ -11,14 +12,12 @@ namespace MyAPI.Business.Services
     {
         private readonly IProdutoRepository _repository;
 
-        public ProdutoService(IProdutoRepository repository)
-        {
-            _repository = repository;
-        }
+        public ProdutoService(IProdutoRepository repository,
+                              INotificador notificador) : base(notificador) => _repository = repository;
 
         public async Task Adicionar(Produto produto)
         {
-            if (!IsValid(new ProdutoValidation(), produto)) return;
+            if (!ExecutarValidacao(new ProdutoValidation(), produto)) return;
 
             await _repository.Adicionar(produto);
         }

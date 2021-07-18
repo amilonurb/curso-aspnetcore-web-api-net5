@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MyAPI.Business.Interfaces;
 using MyAPI.Business.Interfaces.Repositories;
 using MyAPI.Business.Interfaces.Services;
+using MyAPI.Business.Notificacoes;
 using MyAPI.Business.Services;
 using MyAPI.Data.Contexts;
 using MyAPI.Data.Repositories;
@@ -28,6 +30,8 @@ namespace MyAPI.Configurations.Extensions
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
 
             services.AddScoped<IProdutoService, ProdutoService>();
+
+            services.AddScoped<INotificador, Notificador>();
 
             return services;
         }
