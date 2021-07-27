@@ -11,7 +11,8 @@ using System.Threading.Tasks;
 
 namespace MyAPI.Controllers
 {
-    [Route("produtos")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/produtos")]
     public class ProdutosController : MainController
     {
         private readonly IProdutoService _service;
